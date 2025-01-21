@@ -41,7 +41,7 @@ export default function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/eiadty' element={<Landing />} />
+          <Route path='/' element={<Landing />} />
           <Route path='/Layout' element={<Layout role={role} />} >
             <Route path='SignUp' element={<SignUp setRole={setRole} setPhoneNumber={setPhoneNumber} />} />
             <Route path='Login' element={<Login setRole={setRole} setPhoneNumber={setPhoneNumber} />} />
