@@ -1,0 +1,185 @@
+li a {
+    text-decoration: none !important;
+    color: var(--main-color)!important;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  header {
+    width: 100%;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    border-bottom: 1px solid var(--main-color);
+    background-color: white;
+    z-index: 1;
+  }
+
+  .header-container div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+  }
+  .header-container ul {
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+  }
+  .header-container ul li {
+    display: inline-block;
+    list-style: none;
+    padding: 10px;
+    color: var(--main-color) !important;
+    cursor: pointer;
+  }
+  .logout{
+    text-decoration: none !important;
+    color: var(--main-color) !important;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .nested-menu-container {
+    display: flex;
+    justify-content: start;
+    align-items: start !important;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    background-color: #e5e9f1;
+  }
+  .menu-icon-container {
+    width: 35px;
+    height: 20px;
+    position: relative;
+    left: 0px;
+    display: none !important;
+  }
+  .menu-icon::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -6px;
+    width: 35px;
+    height: 2px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+  }
+
+  .menu-icon {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translate(0px, -50%);
+    width: 20px;
+    height: 3px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    transition-duration: 0.5s;
+  }
+
+  .menu-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 35px;
+    height: 2px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+  }
+  .clinic-color {
+    background-color: #e5e9f1 ;
+    color: black ;
+  }
+  .clinic-color:hover{
+    background-color: white;
+  }
+
+  .logo {
+    text-decoration: none;
+    color: var(--main-color);
+    font-size: 2.2em;
+    font-weight: 800;
+  }
+  @media (max-width: 768px) {
+    .header-container {
+      justify-content: space-between !important;
+      padding: 20px;
+    }
+    .header-container div {
+      flex-direction: column;
+    }
+    .menu-icon {
+      display: block !important;
+      cursor: pointer !important;
+    }
+    .menu-icon-container {
+      display: block !important;
+      cursor: pointer !important;
+    }
+    .header-container ul {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      opacity: 0;
+      top: -150px;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: -1;
+      background-color: #f7f5f5;
+      transition: 0.7s ease-in-out;
+    }
+    .list .active-menu {
+      width: 35px;
+    }
+    .list .active-menu-ul {
+      top: 100%;
+      opacity: 1;
+      z-index: 2;
+    }
+    .list .active-menu-ul li {
+      padding: 20px;
+      transition: 0.3s ease-in-out;
+    }
+    .list .active-menu-ul li:hover {
+      padding-right: 30px;
+    }
+    .nested-menu-container {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 100%;
+      position: relative;
+      top: 0;
+    }
+    .clinic {
+      box-shadow: 0px 3px 5px #3a6cf418;
+    }
+    .clinic-li {
+      height: 0;
+      opacity: 0;
+      font-size: 0;
+      display: none !important;
+    }
+    .clinic-color {
+      background-color: #e5e9f1 !important;
+      color: black !important;
+      width: 100%;
+    }
+  }

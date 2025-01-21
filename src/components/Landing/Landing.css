@@ -1,0 +1,146 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url("../../assets/pexels-karolina-grabowska-4021769.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  filter: brightness(0.8);
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.admin-home-content{
+  height: 80vh!important;
+}
+.content > div {
+  width: 50%;
+  height: 100%;
+}
+.button {
+  width: 60%;
+  --color: #00a97f;
+  padding: 0.8em 1.7em;
+  background-color: white;
+  border-radius: 0.3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 600;
+  font-size: 17px;
+  border: 1px solid #00a97f;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+  box-shadow: 0px 0px 20px #00a97f;
+  opacity: 1;
+  text-align: center;
+  text-decoration: none;
+  margin: 15px 0;
+}
+.landing-container .button{
+  opacity: 0;
+}
+.content > div .button:nth-child(1) {
+  animation: animate 0.5s linear 1.5s forwards;
+}
+.content > div .button:nth-child(2) {
+  animation: animate 0.5s linear 1s forwards;
+}
+.content > div .button:nth-child(3) {
+  animation: animate 0.5s linear 0.5s forwards;
+}
+.content > div .button:nth-child(4) {
+  animation: animate 0.5s linear 0s forwards;
+}
+.content > div p {
+  margin: 40px 0;
+  padding: 20px;
+  columns: 80% 2;
+  color: #00a97f;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.button::before,
+.button::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+}
+
+.button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+  height: 610px;
+  width: 610px;
+}
+
+.button:hover {
+  color: white;
+}
+
+.button:active {
+  filter: brightness(0.8);
+}
+@keyframes animate {
+  0% {
+    transform: translate(0, -200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .cover {
+    width: 100%;
+  }
+  .content > div {
+    width: 100%;
+  }
+  .content > div p {
+    color: white;
+  }
+}

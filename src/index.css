@@ -1,0 +1,13 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Cairo", "Almarai", sans-serif;
+    direction: rtl;
+  }
+  :root {
+    --main-color: #606060;
+    --secondary-color: #3a6cf4;
+    --third-color: #f89b29;
+    --fourth-color: #ff0f7b;
+  }

@@ -1,0 +1,20 @@
+.complete-container{
+    margin-top: 10px;
+    max-height: 130px;
+    overflow-y: scroll;
+    width: 90%;
+}
+.complete-compo{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    padding: 3px;
+}
+.complete-compo p {
+    font-size: 1.1em!important;
+}
+.complete-compo button{
+    border: none;
+    background: transparent;
+}
