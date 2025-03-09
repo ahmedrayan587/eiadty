@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FormRadio({ArabicName,required="required",DataArray,setValues}) {
+export default function FormRadio({ArabicName,DataArray}) {
   return (
     <div className="inf">
         <label className="lb">{ArabicName}</label>
@@ -8,7 +8,7 @@ export default function FormRadio({ArabicName,required="required",DataArray,setV
         {DataArray.map(data=>{
             return(
                 <div key={data.value} className="d-flex align-items-center backup">
-                    <input id={data.value} type="radio" required={required} name={data.name} onChange={(event=>{setValues(data.value)})}/><label htmlFor={data.value}>
+                    <input id={data.value} type="radio" name={data.name} /><label htmlFor={data.value}>
                     {data.text}</label>
                 </div>
             )

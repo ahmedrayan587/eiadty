@@ -1,192 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react'
-import axios from 'axios';
 import { Link } from 'react-router-dom'
 import FormTitle from '../Form/FormTitle';
 import FormInput from '../Form/FormInput';
 import "./CompleteData.css"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { host } from '../../utils/APIRoutes';
 
-export default function CompleteData({patientPhone}) {
-  const [chronics,setChronics] = useState("");
-  const [allChronics, setAllChronics] = useState([]);
-  const [surgeries,setSurgeries] = useState("");
-  const [allSurgeries, setAllSurgeries] = useState([]);
-  const [pharmaceutical,setPharmaceutical] = useState("");
-  const [allPharmaceutical, setAllPharmaceutical] = useState([]);
-  const submitButton = useRef();
+export default function CompleteData() {
   /*chronics */
-  async function postChronics(diseases_Name) {
-    try {
-      const response = await axios.post(`${host}/Diseases/AddDiseases`,{patient_Phone:patientPhone,diseases_Name:diseases_Name});
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getChronics();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function getChronics() {
-    try {
-      const response = await axios.get(`${host}/Diseases/GetAllPatientDiseases?patientPhone=${patientPhone}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        setAllChronics(response.data);
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function deleteChronics(diseases_Name) {
-    try {
-      const response = await axios.delete(`${host}/Diseases/DeleteDiseases?Patient_Phone=${patientPhone}&Diseases_Name=${diseases_Name}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getChronics();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  useEffect(()=>{
-    if(chronics.key =="Enter"&&chronics.target.value!=""){
-        postChronics(chronics.target.value);
-        setTimeout(() => {
-            chronics.target.value="";
-            chronics.target.classList.remove("typed");
-        }, 50);
-        
-    }
-},[chronics.key])
-/*surgeries */
-async function postSurgeries(operation_Name) {
-    try {
-      const response = await axios.post(`${host}/Operations/AddOperation`,{patient_Phone:patientPhone,operation_Name:operation_Name});
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getSurgeries();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function getSurgeries() {
-    try {
-      const response = await axios.get(`${host}/Operations/GetAllPatientOperations?patientPhone=${patientPhone}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        setAllSurgeries(response.data);
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function deleteSurgeries(operation_Name) {
-    try {
-      const response = await axios.delete(`${host}/Operations/DeleteOperation?Patient_Phone=${patientPhone}&Operation_Name=${operation_Name}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getSurgeries();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  useEffect(()=>{
-    if(surgeries.key =="Enter"&&surgeries.target.value!=""){
-        postSurgeries(surgeries.target.value);
-        setTimeout(() => {
-            surgeries.target.value="";
-            surgeries.target.classList.remove("typed");
-        }, 50);
-        
-    }
-},[surgeries.key])
-/*pharmaceutical */
-async function postPharmaceutical(drug_Name) {
-    try {
-      const response = await axios.post(`${host}/Drugs/AddDrug`,{patient_Phone:patientPhone,drug_Name:drug_Name});
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getPharmaceutical();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function getPharmaceutical() {
-    try {
-      const response = await axios.get(`${host}/Drugs/GetAllPatientDrugs?patientPhone=${patientPhone}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        setAllPharmaceutical(response.data);
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  async function deletePharmaceutical(drug_Name) {
-    try {
-      const response = await axios.delete(`${host}/Drugs/DeleteDrug?Patient_Phone=${patientPhone}&Drug_Name=${drug_Name}`);
-  
-      if (response.status == 200) {
-        console.log('Piece data posted successfully:',response);
-        getPharmaceutical();
-      } else {
-        console.error('Error posting piece data:',response);
-      }
-    } catch (error) {
-      console.error('Error during post request:', error);
-    }
-  };
-  useEffect(()=>{
-    if(pharmaceutical.key =="Enter"&&pharmaceutical.target.value!=""){
-        postPharmaceutical(pharmaceutical.target.value);
-        setTimeout(() => {
-            pharmaceutical.target.value="";
-            pharmaceutical.target.classList.remove("typed");
-        }, 50);
-        
-    }
-},[pharmaceutical.key])
-useEffect(()=>{
-    patientPhone&&getChronics();
-    patientPhone&&getPharmaceutical();
-    patientPhone&&getSurgeries();
-},[patientPhone])
-
 
   return (
         <div className="container">
           <div className="card">
           <FormTitle key={"title"} name="استكمال البيانات" />
-          <FormInput name={"الامراض المزمنة"} type={"text"} minLength={0} maxLength={500} setValues={setChronics}/>
+          <FormInput name={"الامراض المزمنة"} type={"text"} minLength={0} maxLength={500} />
           <div className="complete-container">
             {allChronics.map((chronic, index) => (
               chronic&&<div className='complete-compo' key={index}>
@@ -282,7 +108,7 @@ useEffect(()=>{
                         </div>
             ))}
           </div>
-          <Link to={'/Layout/Explore'} className="button" >انهاء</Link>
+          <Link to={'/Explore'} className="button" >انهاء</Link>
           </div>
         </div>
   )

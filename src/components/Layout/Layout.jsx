@@ -1,35 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import axios from 'axios';
 import'./Layout.css'
-import { Link, Outlet} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cookies from 'js-cookie';
-import { host } from '../../utils/APIRoutes';
 
 export default function Layout({role}) {
     const menuIcon = useRef();
     const menuUl = useRef();
-    const nestedMenu = useRef();
     console.log(role);
-    async function Logout() {
-
-        try {
-          const response = await axios.post(`${host}/Autho/revokeToken`,{token:Cookies.get('refToken')});
-      
-          if (response.status == 200) {
-            Cookies.set('userPhone', "");
-            Cookies.set('userRole', "");
-            Cookies.set('refToken', "");
-            console.log('Piece data posted successfully:',response);
-            window.location.assign("/");
-          } else {
-            console.error('Error posting piece data:',response);
-          }
-        } catch (error) {
-          console.log('Error during post request:', error);
-        }
-      };
   return (
     <>
         <ToastContainer 
@@ -46,7 +24,7 @@ export default function Layout({role}) {
           />
         <header>
             <div className="header-container">
-                <Link to="/Layout/Explore" className="logo">عيادتي</Link>
+                <Link to="/" className="logo">عيادتي</Link>
                 <div>
                     <div className="list">
                         <div id="menuIconContainer" className="menu-icon-container" onClick={()=>{
@@ -79,26 +57,26 @@ export default function Layout({role}) {
                             </div>*/}
                            {role=="Patient"?
                             <>
-                                <li><Link to={"/Layout/MainSocial"}>المنشورات</Link></li>
-                                <li><Link to={"/Layout/BooksHistory"}>سجل الحجوزات</Link></li>
-                                <li><Link to={"/Layout/History"}>السجل المرضي</Link></li>
-                                <li onClick={()=>{Logout();}}><span className='logout'>تسجيل خروج</span></li>
+                                <li><Link to={"/MainSocial"}>المنشورات</Link></li>
+                                <li><Link to={"/BooksHistory"}>سجل الحجوزات</Link></li>
+                                <li><Link to={"/History"}>السجل المرضي</Link></li>
+                                <li><Link to={"/"}>تسجيل خروج</Link></li>
                             </>:role=="Doctor"?
                             <>
-                                <li><Link to={"/Layout/AddPost"}>اضافة منشور</Link></li>
-                                <li><Link to={"/Layout/DoctorReservation"}>حجوزات اليوم</Link></li>
+                                <li><Link to={"/AddPost"}>اضافة منشور</Link></li>
+                                <li><Link to={"/DoctorReservation"}>حجوزات اليوم</Link></li>
                                 <li onClick={()=>{Logout();}}><span className='logout'>تسجيل خروج</span></li>
                             </>:role=="Admin"?
                             <>
-                                <li><Link to="/Layout/DoctorSignup">اضافة طبيب</Link></li>
-                                <li><Link to="/Layout/DoctorTable">سجل الاطباء</Link></li>
-                                <li><Link to="/Layout/PatientTable">سجل المرضى</Link></li>
+                                <li><Link to="/DoctorSignup">اضافة طبيب</Link></li>
+                                <li><Link to="/DoctorTable">سجل الاطباء</Link></li>
+                                <li><Link to="/PatientTable">سجل المرضى</Link></li>
                                 <li onClick={()=>{Logout();}}><span className='logout'>تسجيل خروج</span></li>
                             </>:
                             <>
-                                <li><Link to={"/Layout/MainSocial"}>المنشورات</Link></li>
-                                <li><Link to="/Layout/SignUp">انشاء حساب</Link></li>
-                                <li><Link to="/Layout/Login">تسجيل الدخول</Link></li>
+                                <li><Link to={"/MainSocial"}>المنشورات</Link></li>
+                                <li><Link to="/SignUp">انشاء حساب</Link></li>
+                                <li><Link to="/Login">تسجيل الدخول</Link></li>
                             </>
                             }
                         </ul>
@@ -106,7 +84,6 @@ export default function Layout({role}) {
                 </div>
             </div>
         </header>
-        <Outlet />
     </>
   )
 }

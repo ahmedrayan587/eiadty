@@ -1,37 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './AllDoctors.css'
-import DoctorCard from '../Cards/DoctorCard'
-import { host } from '../../utils/APIRoutes';
+import './AllDoctors.css';
+import DoctorCard from '../Cards/DoctorCard';
+import image from "../../assets/1669490451644.jpg"
 
 export default function AllDoctors() {
-  const [data, setData] = useState([]);
-  let { state } = useLocation();
-  useEffect(() => {
-    fetchData();
-  }, []);
-  console.log(state);
-  async function fetchData() {
-    try {
-      const response = await axios.get(`${host}/Doctors/GetAllClinicDoctors?clinicName=${state.name}`);
+  // Static data with Arabic doctor names and details
+  const [data, setData] = useState([
+    {
+      id: 1,
+      image: image,
+      name: 'دكتور أحمد محمد',
+      specialty: 'أخصائي باطنة',
+      clinic: 'عيادة الباطنة',
+      details: 'خبرة أكثر من 10 سنوات في تشخيص وعلاج أمراض الباطنة.',
+    },
+    {
+      id: 2,
+      image: image,
+      name: 'دكتورة محمد علي',
+      specialty: 'أخصائية جراحة',
+      clinic: 'عيادة الجراحة',
+      details: 'متخصصة في الجراحات العامة وجراحات المناظير.',
+    },
+    {
+      id: 3,
+      image: image,
+      name: 'دكتور خالد حسن',
+      specialty: 'أخصائي أطفال',
+      clinic: 'عيادة الأطفال',
+      details: 'رعاية صحية متكاملة للأطفال من الولادة حتى المراهقة.',
+    },
+    {
+      id: 4,
+      image: image,
+      name: 'دكتورة احمد محمود',
+      specialty: 'أخصائية نساء وتوليد',
+      clinic: 'عيادة النساء والتوليد',
+      details: 'رعاية صحية للنساء وخدمات التوليد والمتابعة أثناء الحمل.',
+    },
+    {
+      id: 5,
+      image: image,
+      name: 'دكتور عمر عبدالله',
+      specialty: 'أخصائي عظام',
+      clinic: 'عيادة العظام',
+      details: 'تشخيص وعلاج أمراض العظام والمفاصل والإصابات الرياضية.',
+    },
+  ]);
 
-      if (response.status === 200) {
-        setData(response.data);
-        console.log(data);
-      } else {
-        console.error('Error fetching data:', response);
-      }
-    } catch (error) {
-      console.error('Error during request:', error);
-    }
-  };
+  let { state } = useLocation();
   return (
     <div className='container'>
-        <h2>اطباء {state.name}</h2>
-        {data.map((doctor, index) => (
-          <DoctorCard key={index}  data={doctor}/>
-        ))}
+      <h2>أطباء {state.name}</h2>
+      {data.map((doctor, index) => (
+        state.name == doctor.clinic&&<DoctorCard key={index} data={doctor} />
+      ))}
     </div>
-  )
+  );
 }

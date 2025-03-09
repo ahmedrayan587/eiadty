@@ -1,31 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import ClinicCard from '../Cards/ClinicCard';
-import src from '../../assets/1_20231219_021200_0000.png';
 import ExploreMain from './ExploreMain';
-import { host } from '../../utils/APIRoutes';
 
 export default function Explore() {
-  const [data, setData] = useState([]);
-  let { state } = useLocation();
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(`${host}/Clinics/GitClinics`);
-
-      if (response.status === 200) {
-        setData(response.data);
-      } else {
-        console.error('Error fetching data:', response);
-      }
-    } catch (error) {
-      console.error('Error during request:', error);
-    }
-  };
+  // Static data with Arabic clinic names and types
+  const [data, setData] = useState([
+    {
+      id: 1,
+      name: 'عيادة الباطنة',
+      details: 'متخصصة في تشخيص وعلاج أمراض الباطنة مثل السكري وضغط الدم.',
+    },
+    {
+      id: 2,
+      name: 'عيادة الجراحة',
+      details: 'تقدم خدمات جراحية عامة وجراحات متخصصة.',
+    },
+    {
+      id: 3,
+      name: 'عيادة الأطفال',
+      details: 'رعاية صحية متكاملة للأطفال من الولادة حتى المراهقة.',
+    },
+    {
+      id: 4,
+      name: 'عيادة النساء والتوليد',
+      details: 'رعاية صحية للنساء وخدمات التوليد والمتابعة أثناء الحمل.',
+    },
+    {
+      id: 5,
+      name: 'عيادة العظام',
+      details: 'تشخيص وعلاج أمراض العظام والمفاصل والإصابات الرياضية.',
+    },
+    {
+      id: 6,
+      name: 'عيادة القلب',
+      details: 'تشخيص وعلاج أمراض القلب والأوعية الدموية.',
+    },
+    {
+      id: 7,
+      name: 'عيادة الجلدية',
+      details: 'علاج الأمراض الجلدية والتجميل والليزر.',
+    },
+    {
+      id: 8,
+      name: 'عيادة الأنف والأذن والحنجرة',
+      details: 'تشخيص وعلاج أمراض الأنف والأذن والحنجرة.',
+    },
+    {
+      id: 9,
+      name: 'عيادة العيون',
+      details: 'فحص وعلاج أمراض العيون وإجراء العمليات الجراحية.',
+    },
+    {
+      id: 10,
+      name: 'عيادة الأسنان',
+      details: 'خدمات طب الأسنان العام والتجميلي وعلاج اللثة.',
+    },
+  ]);
 
   return (
     <>

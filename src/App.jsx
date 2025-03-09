@@ -25,49 +25,39 @@ import DoctorAllPosts from './components/Admin/DoctorAllPosts'
 import AllChecks from './components/Admin/AllChecks'
 import BooksHistory from './components/History/BooksHistory'
 import DoctorSignup from './components/Register/DoctorSignup'
-import Cookies from 'js-cookie';
 
 export default function App() {
-  const [role,setRole] = useState("");
-  /*phoneNumber is the phone of user login */
-  const [phoneNumber,setPhoneNumber] = useState("");
-  
-  useEffect(()=>{
-    Cookies.get('userPhone')&&setPhoneNumber(Cookies.get('userPhone'));
-    Cookies.get('userRole')&&setRole(Cookies.get('userRole'));
-    console.log(Cookies.get('userPhone'),Cookies.get('userRole'))
-  },[])
+  const [role,setRole] = useState("Patient");
+  const [phoneNumber,setPhoneNumber] = useState("01234567890");
   return (
     <>
       <BrowserRouter>
+      <Layout role={role} />
         <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/Layout' element={<Layout role={role} />} >
-            <Route path='SignUp' element={<SignUp setRole={setRole} setPhoneNumber={setPhoneNumber} />} />
-            <Route path='Login' element={<Login setRole={setRole} setPhoneNumber={setPhoneNumber} />} />
-            <Route path='CompleteData' element={<CompleteData patientPhone={phoneNumber} />} />
-            <Route path='Explore' element={<Explore />} />
-            <Route path='BooksHistory' element={<BooksHistory patientPhone={phoneNumber} />} />
-            <Route path='History' element={<History patientPhone={phoneNumber} role={role} />} />
-            <Route path='ReservationForm' element={<ReservationForm userPhone={phoneNumber} />} />
-            <Route path='MainSocial' element={<MainSocial patientPhone={phoneNumber} role={role} />} />
-            <Route path='AllDoctors' element={<AllDoctors />} />
-            <Route path='DoctorData' element={<DoctorData patientPhone={phoneNumber} role={role} />} />
+            <Route path='/' element={<Explore />} />
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/CompleteData' element={<CompleteData patientPhone={phoneNumber} />} />
+            <Route path='/BooksHistory' element={<BooksHistory patientPhone={phoneNumber} />} />
+            <Route path='/History' element={<History patientPhone={phoneNumber} role={role} />} />
+            <Route path='/ReservationForm' element={<ReservationForm userPhone={phoneNumber} />} />
+            <Route path='/MainSocial' element={<MainSocial patientPhone={phoneNumber} role={role} />} />
+            <Route path='/AllDoctors' element={<AllDoctors />} />
+            <Route path='/DoctorData' element={<DoctorData patientPhone={phoneNumber} role={role} />} />
             {/*doctor Links */}
-            <Route path='DoctorReservation' element={<DoctorReservation doctorPhone={phoneNumber} />} />
-            <Route path='check' element={<Check doctorPhone={phoneNumber} />} />
-            <Route path='DoctorPersonal' element={<DoctorPersonal doctorPhone={phoneNumber} role={role} />} />
-            <Route path='AddPost' element={<AddPost doctorPhone={phoneNumber} />} />
-            <Route path='CheckData' element={<CheckData />} />
-            <Route path='PatientHistory' element={<PatientHistory doctorPhone={phoneNumber}  />} />
+            <Route path='/DoctorReservation' element={<DoctorReservation doctorPhone={phoneNumber} />} />
+            <Route path='/check' element={<Check doctorPhone={phoneNumber} />} />
+            <Route path='/DoctorPersonal' element={<DoctorPersonal doctorPhone={phoneNumber} role={role} />} />
+            <Route path='/AddPost' element={<AddPost doctorPhone={phoneNumber} />} />
+            <Route path='/CheckData' element={<CheckData />} />
+            <Route path='/PatientHistory' element={<PatientHistory doctorPhone={phoneNumber}  />} />
             {/*Admin Links */}
-            <Route path='AdminHome' element={<AdminHome />} />
-            <Route path='DoctorSignup' element={<DoctorSignup />} />
-            <Route path='PatientTable' element={<PatientTable />} />
-            <Route path='DoctorTable' element={<DoctorTable />} />
-            <Route path='DoctorAllPosts' element={<DoctorAllPosts />} />
-            <Route path='AllChecks' element={<AllChecks />} />
-          </Route>
+            <Route path='/AdminHome' element={<AdminHome />} />
+            <Route path='/DoctorSignup' element={<DoctorSignup />} />
+            <Route path='/PatientTable' element={<PatientTable />} />
+            <Route path='/DoctorTable' element={<DoctorTable />} />
+            <Route path='/DoctorAllPosts' element={<DoctorAllPosts />} />
+            <Route path='/AllChecks' element={<AllChecks />} />
         </Routes>
       </BrowserRouter>
     </>
