@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
 
-export default function FormSelect({name , optionsObj,setValues}) {
+export default function FormSelect({name , optionsObj}) {
     const selectValue = useRef();
     const options = useRef();
   return (
     <div className="inputBox custom-select-wraper">
         <input
         className="custom-select"
-        required="required"
         ref={selectValue}
         onFocus={()=>{
             options.current.style.display = "block";
@@ -27,7 +26,6 @@ export default function FormSelect({name , optionsObj,setValues}) {
                      onFocus={()=>{selectValue.current.focus()}}
                      onClick={(event)=>{
                         selectValue.current.value = event.target.textContent;
-                        setValues(event.target.textContent);
                         
                         
                     }}>{opt}</div>

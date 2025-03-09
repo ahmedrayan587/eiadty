@@ -2,7 +2,6 @@ import './DoctorCard.css'
 import Button from '../Form/Button'
 
 export default function DoctorCard({data}) {
-  console.log(data);
   return (
     <>
         <div className="doctor-card-container">

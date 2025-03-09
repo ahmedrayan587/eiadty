@@ -1,11 +1,10 @@
 import React from 'react'
 
-export default function FormTextarea({name,rows,minLength,maxLength,setValues}) {
+export default function FormTextarea({name,rows,minLength,maxLength}) {
   return (
     <div className="inputBox">
       <label className='validation-text'></label>
-      <textarea rows={rows} required="required" minLength={minLength} maxLength={maxLength} onKeyUp={(event)=>{
-            setValues(event.target.value);
+      <textarea rows={rows} minLength={minLength} maxLength={maxLength} onKeyUp={(event)=>{
             if(event.target.value.length > 0){
               event.target.classList.add('typed'); 
             }else{
